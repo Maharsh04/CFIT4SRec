@@ -184,8 +184,8 @@ def init_seed(seed, reproducibility):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
+    # torch.cuda.manual_seed(seed)
+    # torch.cuda.manual_seed_all(seed)
     if reproducibility:
         torch.backends.cudnn.benchmark = False
         torch.backends.cudnn.deterministic = True

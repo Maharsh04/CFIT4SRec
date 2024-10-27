@@ -43,7 +43,8 @@ def run_recbole(model=None, dataset=None, config_file_list=None, config_dict=Non
         print('1')
         pass
     else:
-        os.mkdir('result/{}'.format(config['model']))
+        os.makedirs('result/{}'.format(config['model']),exist_ok=True)
+        # os.mkdir('result/{}'.format(config['model']))
     # init_seed(config['seed'], config['reproducibility'])
 
     # logger initialization

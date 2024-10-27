@@ -1,30 +1,26 @@
 ## model config
 #embedding_size: 32
+
 # dataset config
 
 # MovieLens, Amazon
-field_separator: "\t" #指定数据集field的分隔符
-seq_separator: " " #指定数据集中token_seq或者float_seq域里的分隔符
-USER_ID_FIELD: user_id #指定用户id域
-ITEM_ID_FIELD: item_id #指定物品id域
-RATING_FIELD: rating #指定打分rating域
-TIME_FIELD: timestamp #指定时间域
+field_separator: "\t" # Specify the field delimiter of the dataset
+seq_separator: " " # Specify the delimiter for token_seq or float_seq fields in the dataset
+USER_ID_FIELD: user_id # Specify the user ID field
+ITEM_ID_FIELD: item_id # Specify the item ID field
+RATING_FIELD: rating # Specify the rating field
+TIME_FIELD: timestamp # Specify the timestamp field
 
-
-
-
-#指定从什么文件里读什么列，这里就是从ml-1m.inter里面读取user_id, item_id, rating, timestamp这四列,剩下的以此类推
+# Specify from which file to read which columns. Here, it reads user_id, item_id, rating, timestamp from ml-1m.inter, and so on
 load_col:
     inter: [user_id, item_id, rating, timestamp]
 
-
-
-NEG_PREFIX: neg_ #指定负采样前缀
-LABEL_FIELD: label #指定标签域
-ITEM_LIST_LENGTH_FIELD: item_length #指定序列长度域
-LIST_SUFFIX: _list #指定序列前缀
-MAX_ITEM_LIST_LENGTH: 50 #指定最大序列长度
-POSITION_FIELD: position_id #指定生成的序列位置id
+NEG_PREFIX: neg_ # Specify the prefix for negative sampling
+LABEL_FIELD: label # Specify the label field
+ITEM_LIST_LENGTH_FIELD: item_length # Specify the field for sequence length
+LIST_SUFFIX: _list # Specify the prefix for sequences
+MAX_ITEM_LIST_LENGTH: 50 # Specify the maximum sequence length
+POSITION_FIELD: position_id # Specify the generated sequence position ID
 
 #max_user_inter_num: 100
 min_user_inter_num: 5
@@ -36,18 +32,18 @@ min_item_inter_num: 5
 #    timestamp: 1577714400
 
 # training settings
-epochs: 50 #训练的最大轮数
-train_batch_size: 256 #训练的batch_size
-learner: adam #使用的pytorch内置优化器
-learning_rate: 0.001 #学习率
-training_neg_sample_num: 0 #负采样数目
-eval_step: 1 #每次训练后做evalaution的次数
-stopping_step: 10 #控制训练收敛的步骤数，在该步骤数内若选取的评测标准没有什么变化，就可以提前停止了
-# evalution settings
-eval_setting: TO_LS,full #对数据按时间排序，设置留一法划分数据集，并使用全排序
-metrics: ["NDCG","Hit"] #评测标准
-valid_metric: Hit@10 #选取哪个评测标准作为作为提前停止训练的标准
-eval_batch_size: 256 #评测的batch_size
+epochs: 50 # Maximum number of training epochs
+train_batch_size: 256 # Batch size for training
+learner: adam # PyTorch optimizer
+learning_rate: 0.001 # Learning rate
+training_neg_sample_num: 0 # Number of negative samples
+eval_step: 1 # Evaluation frequency after each training step
+stopping_step: 10 # Early stopping step count if the validation metric doesn’t improve
+# evaluation settings
+eval_setting: TO_LS,full # Sort data by time, use leave-one-out data split, and full ranking
+metrics: ["NDCG","Hit"] # Evaluation metrics
+valid_metric: Hit@10 # Metric to determine early stopping
+eval_batch_size: 256 # Batch size for evaluation
 weight_decay: 0
 topk: [5, 10, 20]
 

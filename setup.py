@@ -45,7 +45,7 @@ setup(
     author='RecBoleTeam',
     author_email='recbole@outlook.com',
     packages=[
-        package for package in find_packages()
+        package for package in find_packages() 
         if package.startswith('recbole')
     ],
     include_package_data=True,
