@@ -171,7 +171,7 @@ class Interaction(object):
         """
         ret = {}
         for k in self.interaction:
-            ret[k] = self.interaction[k].cpu()
+            ret[k] = self.interaction[k].gpu()
         return Interaction(ret)
 
     def numpy(self):
