@@ -84,7 +84,7 @@ def run_recbole(model=None, dataset=None, config_file_list=None, config_dict=Non
     import matplotlib.pyplot as plt
     from sklearn.decomposition import TruncatedSVD
 
-    embedding_matrix = model.item_embedding.weight[1:].gpu().detach().numpy()
+    embedding_matrix = model.item_embedding.weight[1:].cpu().detach().numpy()
     svd = TruncatedSVD(n_components=2)
     svd.fit(embedding_matrix)
     comp_tr = np.transpose(svd.components_)

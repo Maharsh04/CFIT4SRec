@@ -87,7 +87,7 @@ class TopKEvaluator(GroupedEvaluator):
 
         """
         pos_len_list = eval_data.get_pos_len_list()
-        batch_result = torch.cat(batch_matrix_list, dim=0).gpu().numpy()
+        batch_result = torch.cat(batch_matrix_list, dim=0).cpu().numpy()
 
         # unpack top_idx and shape_matrix
         topk_idx = batch_result[:, :-1]
@@ -248,7 +248,7 @@ class RankEvaluator(GroupedEvaluator):
         """
         pos_len_list = eval_data.get_pos_len_list()
         user_len_list = eval_data.get_user_len_list()
-        pos_rank_sum = torch.cat(batch_matrix_list, dim=0).gpu().numpy()
+        pos_rank_sum = torch.cat(batch_matrix_list, dim=0).cpu().numpy()
         assert len(pos_len_list) == len(pos_rank_sum)
 
         # get metrics
@@ -328,7 +328,7 @@ class LossEvaluator(IndividualEvaluator):
             dict: such as {'AUC': 0.83}
 
         """
-        concat = torch.cat(batch_matrix_list, dim=0).gpu().numpy()
+        concat = torch.cat(batch_matrix_list, dim=0).cpu().numpy()
 
         trues = concat[:, 0]
         preds = concat[:, 1]
