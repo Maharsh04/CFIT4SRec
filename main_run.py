@@ -5,12 +5,15 @@ sim = ['dot']
 lmd = [0.1]
 drop = [0.3]
 tau = [1]
-learning_rate = [0.001]
+learning_rate = [0.001,0.0005,0.0001]
 max_l = [50]
 weight_decay_lst = [0, 0.001, 0.0001]
 train_r = [0.25, 0.25, 0.5, 0.75, 1]
 # dataset = ["Amazon_Beauty","Amazon_Clothing_Shoes_and_Jewelry","Amazon_Sports_and_Outdoors","ml-1m"]
-dataset = ["ml-100k"]
+# dataset = ["ml-100k"] # For ML-100k dataset
+# dataset = ["ml-1m"] # For ML-1M dataset
+dataset = ["yelp"] # For Yelp dataset
+# dataset = ["mind"] # For MIND dataset
 
 
 for l_ok in [0, 1]:
@@ -24,7 +27,7 @@ for l_ok in [0, 1]:
                                 for lr in learning_rate:
                                     for ml in max_l:
                                         os.system("python run_seq.py --dataset={} --train_batch_size=256 "
-                                                  "--lmd={}  --model='CFIT4SRec'  --sim={} "
+                                                  "--lmd={}  --model=' CFIT4SRec '  --sim={} "
                                                   "--hidden_dropout_prob={} --attn_dropout_prob={} --tau={} --learning_rate={} "
                                                   "--MAX_ITEM_LIST_LENGTH={} --l_ok={} --h_ok={} --b_ok={}".format(
                                             data,

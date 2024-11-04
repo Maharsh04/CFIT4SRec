@@ -3,17 +3,41 @@
 
 # dataset config
 
-# MovieLens, Amazon
+# ---------------------------ML-100k dataset-----------------------------
+# field_separator: "\t" # Specify the field delimiter of the dataset
+# seq_separator: " " # Specify the delimiter for token_seq or float_seq fields in the dataset
+
+# ---------------------------ML-100k dataset-----------------------------
+# field_separator: "::" # Specify the field delimiter of the dataset
+# seq_separator: "|" # Specify the delimiter for token_seq or float_seq fields in the dataset
+
+# ---------------------------Yelp dataset-----------------------------
 field_separator: "\t" # Specify the field delimiter of the dataset
 seq_separator: " " # Specify the delimiter for token_seq or float_seq fields in the dataset
+
+# ---------------------------MIND dataset-----------------------------
+# field_separator: "\t" # Specify the field delimiter of the dataset
+# seq_separator: " " # Specify the delimiter for token_seq or float_seq fields in the dataset
+
 USER_ID_FIELD: user_id # Specify the user ID field
 ITEM_ID_FIELD: item_id # Specify the item ID field
+# CLICKED_FIELD: clicked # Specify the Clicked field (For MIND Dataset)
 RATING_FIELD: rating # Specify the rating field
 TIME_FIELD: timestamp # Specify the timestamp field
 
 # Specify from which file to read which columns. Here, it reads user_id, item_id, rating, timestamp from ml-1m.inter, and so on
+#---------------------MovieLens Dataset---------------------
+# load_col:
+#     inter: [user_id, item_id, rating, timestamp]
+
+#---------------------Yelp Dataset-------------------------
 load_col:
-    inter: [user_id, item_id, rating, timestamp]
+    inter: [user_id, item_id, rating, timestamp, useful, funny, cool, review_id]
+
+#---------------------MIND Dataset-------------------------
+# load_col:
+#     inter: [user_id, item_id, clicked, timestamp]
+
 
 NEG_PREFIX: neg_ # Specify the prefix for negative sampling
 LABEL_FIELD: label # Specify the label field
@@ -32,7 +56,7 @@ min_item_inter_num: 5
 #    timestamp: 1577714400
 
 # training settings
-epochs: 50 # Maximum number of training epochs
+epochs: 2 # Maximum number of training epochs
 train_batch_size: 256 # Batch size for training
 learner: adam # PyTorch optimizer
 learning_rate: 0.001 # Learning rate
@@ -43,7 +67,8 @@ stopping_step: 10 # Early stopping step count if the validation metric doesn’t
 eval_setting: TO_LS,full # Sort data by time, use leave-one-out data split, and full ranking
 metrics: ["NDCG","Hit"] # Evaluation metrics
 valid_metric: Hit@10 # Metric to determine early stopping
-eval_batch_size: 256 # Batch size for evaluation
+# eval_batch_size: 256 # Batch size for evaluation
+eval_batch_size: 512 # Batch size for evaluation (For larger dataset like ML-1M)
 weight_decay: 0
 topk: [5, 10, 20]
 
