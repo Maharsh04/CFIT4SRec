@@ -1,4 +1,4 @@
-# Project README
+# Contrastive Learning with Frequency-Domain Interest Trends for Sequential Recommendation Analysis
 
 ## Overview
 This project focuses on implementing and running different recommendation models including CFIT4SRec, DuoRec, and CL4SRec. Each model has its own specific requirements and instructions for execution.
