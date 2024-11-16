@@ -11,8 +11,8 @@ weight_decay_lst = [0, 0.001, 0.0001]
 train_r = [0.25, 0.25, 0.5, 0.75, 1]
 # dataset = ["Amazon_Beauty","Amazon_Clothing_Shoes_and_Jewelry","Amazon_Sports_and_Outdoors","ml-1m"]
 # dataset = ["ml-100k"] # For ML-100k dataset
-# dataset = ["ml-1m"] # For ML-1M dataset
-dataset = ["yelp"] # For Yelp dataset
+dataset = ["ml-1m"] # For ML-1M dataset
+# dataset = ["yelp"] # For Yelp dataset
 # dataset = ["mind"] # For MIND dataset
 
 

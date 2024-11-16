@@ -3,17 +3,14 @@
 
 # dataset config
 
-# ---------------------------ML-100k dataset-----------------------------
+# ---------------------------Amazon Dataset-----------------------------
 # field_separator: "\t" # Specify the field delimiter of the dataset
 # seq_separator: " " # Specify the delimiter for token_seq or float_seq fields in the dataset
 
-# ---------------------------ML-100k dataset-----------------------------
-# field_separator: "::" # Specify the field delimiter of the dataset
-# seq_separator: "|" # Specify the delimiter for token_seq or float_seq fields in the dataset
+# ---------------------------ML-1M dataset-----------------------------
+field_separator: "::" # Specify the field delimiter of the dataset
+seq_separator: "|" # Specify the delimiter for token_seq or float_seq fields in the dataset
 
-# ---------------------------Yelp dataset-----------------------------
-field_separator: "\t" # Specify the field delimiter of the dataset
-seq_separator: " " # Specify the delimiter for token_seq or float_seq fields in the dataset
 
 # ---------------------------MIND dataset-----------------------------
 # field_separator: "\t" # Specify the field delimiter of the dataset
@@ -27,12 +24,8 @@ TIME_FIELD: timestamp # Specify the timestamp field
 
 # Specify from which file to read which columns. Here, it reads user_id, item_id, rating, timestamp from ml-1m.inter, and so on
 #---------------------MovieLens Dataset---------------------
-# load_col:
-#     inter: [user_id, item_id, rating, timestamp]
-
-#---------------------Yelp Dataset-------------------------
 load_col:
-    inter: [user_id, item_id, rating, timestamp, useful, funny, cool, review_id]
+    inter: [user_id, item_id, rating, timestamp]
 
 #---------------------MIND Dataset-------------------------
 # load_col:
@@ -56,7 +49,7 @@ min_item_inter_num: 5
 #    timestamp: 1577714400
 
 # training settings
-epochs: 2 # Maximum number of training epochs
+epochs: 20 # Maximum number of training epochs
 train_batch_size: 256 # Batch size for training
 learner: adam # PyTorch optimizer
 learning_rate: 0.001 # Learning rate
@@ -74,7 +67,7 @@ topk: [5, 10, 20]
 
 # directory setting
 log_root: "./log/"
-data_path: "./dataset/"
+data_path: "../dataset/"
 #checkpoint_dir:
 
 lmd: 0.1
